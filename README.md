@@ -3,25 +3,25 @@
 ## Pasileisti MySql duomenų bazę
 ## Rekomenduoju įsikelti lentelę iš mysql aplanko (nors ir yra padarytas automatiškas lentelių "sync", tačiau tai sutaupys laiko)
 ## Backend paleidimas:
-'''
+```
 cd backend
-'''
-'''
+```
+```
 npm install
-'''
-'''
+```
+```
 node app.js
-'''
+```
 ## Frontend paleidimas:
-'''
+```
 cd frontend
-'''
-'''
+```
+```
 npm install
-'''
-'''
+```
+```
 npm start
-'''
+```
 
 # Funkcijos:
 ## API apsauga
