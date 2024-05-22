@@ -1,25 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Button } from 'react-bootstrap';
-import { getKategorijos } from '../services/api';
-import ProtectedRoute from './ProtectedRoute';
+import React, { useState } from "react";
+import { Form, Button } from "react-bootstrap";
 
-function Filtras({ onFilter }) {
-  const [kategorijos, setKategorijos] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
-
-  useEffect(() => {
-    fetchKategorijos();
-  }, []);
-
-  const fetchKategorijos = async () => {
-    try {
-      const response = await getKategorijos();
-      setKategorijos(response.data);
-    } catch (error) {
-      console.error('Klaida gaunant kategorijas:', error);
-    }
-  };
+function Filtras({ kategorijos, onFilter }) {
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
 
   const handleFilter = () => {
     onFilter({ kategorija: selectedCategory, data: selectedDate });
@@ -35,9 +19,9 @@ function Filtras({ onFilter }) {
           onChange={(e) => setSelectedCategory(e.target.value)}
         >
           <option value="">Visos kategorijos</option>
-          {kategorijos.map(kategorija => (
-            <option key={kategorija.id} value={kategorija.pavadinimas}>
-              {kategorija.pavadinimas}
+          {kategorijos.map((kategorija) => (
+            <option key={kategorija} value={kategorija}>
+              {kategorija}
             </option>
           ))}
         </Form.Control>
@@ -47,7 +31,8 @@ function Filtras({ onFilter }) {
         <Form.Control
           type="date"
           value={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)} />
+          onChange={(e) => setSelectedDate(e.target.value)}
+        />
       </Form.Group>
       <Button onClick={handleFilter}>Filtruoti</Button>
     </Form>
